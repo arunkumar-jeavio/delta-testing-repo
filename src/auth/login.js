@@ -4,6 +4,7 @@ const settings = require("../../config/settings.json");
 const { findByEmail, verify } = require("./users");
 const lockout = require("./lockout");
 
+// shape of an acceptable email address
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function login(email, password, opts) {

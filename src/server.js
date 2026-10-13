@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { login } = require("./auth/login");
 
-const UI = path.join(__dirname, "ui");
+const UI = path.join(__dirname, "web");
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css" };
 
 function readBody(req, cb) {

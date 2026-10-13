@@ -8,6 +8,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function login(email, password, opts) {
   if (!EMAIL_RE.test(String(email || ""))) return { ok: false, reason: "invalid-email" };
   if (String(password || "").length < settings.minPasswordLength) return { ok: false, reason: "password-too-short" };
+  if (!/[0-9]/.test(String(password))) return { ok: false, reason: "password-needs-digit" };
   const user = findByEmail(email);
   if (!user || !verify(user, password)) return { ok: false, reason: "invalid-credentials" };
   const remember = Boolean(opts && opts.remember);

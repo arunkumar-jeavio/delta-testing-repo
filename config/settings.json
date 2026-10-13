@@ -1,4 +1,4 @@
 {
   "sessionMinutes": 30,
-  "minPasswordLength": 8
+  "minPasswordLength": 10
 }

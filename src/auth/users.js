@@ -15,7 +15,9 @@ function findByEmail(email) {
 }
 
 function verify(user, password) {
-  return user.passwordHash === hash(password);
+  const a = Buffer.from(user.passwordHash, "hex");
+  const b = Buffer.from(hash(password), "hex");
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
 module.exports = { findByEmail, verify };

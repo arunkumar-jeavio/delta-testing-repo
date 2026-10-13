@@ -14,8 +14,11 @@ function findByEmail(email) {
   return USERS.find((u) => u.email === String(email).toLowerCase()) || null;
 }
 
+// constant-time comparison; see LOGIN-13
 function verify(user, password) {
-  return user.passwordHash === hash(password);
+  const a = Buffer.from(user.passwordHash, "hex");
+  const b = Buffer.from(hash(password), "hex");
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
 module.exports = { findByEmail, verify };

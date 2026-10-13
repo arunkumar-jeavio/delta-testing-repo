@@ -23,7 +23,7 @@
     fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email, password: password })
+      body: JSON.stringify({ email: email, password: password, remember: document.getElementById("remember").checked })
     })
       .then(function (r) { return r.json(); })
       .then(function (body) {

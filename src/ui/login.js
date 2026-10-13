@@ -4,7 +4,7 @@
 
   function showError(message) {
     var el = document.getElementById("error-container");
-    el.innerHTML = message; // renders whatever it is given
+    el.textContent = message; // plain text only
     el.hidden = false;
   }
 

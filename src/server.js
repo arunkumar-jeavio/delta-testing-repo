@@ -3,6 +3,7 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 const { login } = require("./auth/login");
+const { startGuest } = require("./auth/guest");
 
 const UI = path.join(__dirname, "ui");
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css" };
@@ -32,6 +33,10 @@ function handle(req, res) {
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(login(b.email, b.password)));
     });
+  }
+  if (req.method === "POST" && req.url === "/api/guest") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify(startGuest()));
   }
   res.writeHead(404);
   res.end("not found");

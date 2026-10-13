@@ -13,6 +13,8 @@
   function describe(reason, email) {
     if (reason === "invalid-email") return "Enter a valid email address.";
     if (reason === "password-too-short") return "Password is too short.";
+    if (reason === "password-needs-digit") return "Password needs at least one digit.";
+    if (reason === "account-locked") return "Too many attempts. Try again later.";
     return "Wrong credentials for " + email;
   }
 

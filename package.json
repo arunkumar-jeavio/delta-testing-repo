@@ -3,5 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "A tiny login application used as a mock product for testing release-delta detection in QA AI Nexus.",
-  "scripts": { "start": "node src/server.js", "test": "node --test" }
+  "scripts": { "start": "node src/server.js", "test": "node --test" },
+  "devDependencies": { "prettier": "^3.3.0" }
 }

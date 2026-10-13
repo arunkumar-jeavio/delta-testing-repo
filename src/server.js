@@ -31,7 +31,7 @@ function handle(req, res) {
   if (req.method === "POST" && req.url === "/api/login") {
     return readBody(req, function (b) {
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(login(b.email, b.password)));
+      res.end(JSON.stringify(login(b.email, b.password, { remember: b.remember })));
     });
   }
   if (req.method === "POST" && req.url === "/api/guest") {

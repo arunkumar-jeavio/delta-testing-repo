@@ -1,6 +1,6 @@
 {
   "name": "delta-testing-app",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "A tiny login application used as a mock product for testing release-delta detection in QA AI Nexus.",
   "scripts": { "start": "node src/server.js", "test": "node --test" },

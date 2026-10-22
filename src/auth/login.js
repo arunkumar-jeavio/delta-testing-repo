@@ -11,6 +11,7 @@ function login(rawEmail, password, opts) {
   const email = String(rawEmail || "").trim();
   if (!EMAIL_RE.test(String(email || ""))) return { ok: false, reason: "invalid-email" };
   if (String(password || "").length < settings.minPasswordLength) return { ok: false, reason: "password-too-short" };
+  if (String(password).length > 128) return { ok: false, reason: "password-too-long" };
   if (!/[0-9]/.test(String(password))) return { ok: false, reason: "password-needs-digit" };
   if (lockout.isLocked(email)) return { ok: false, reason: "account-locked" };
   const user = findByEmail(email);

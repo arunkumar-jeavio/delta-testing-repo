@@ -24,3 +24,7 @@ test("a failed sign-in reports how many attempts remain", () => {
   assert.strictEqual(r.reason, "invalid-credentials");
   assert.strictEqual(typeof r.attemptsLeft, "number");
 });
+
+test("a password longer than 72 characters is rejected", () => {
+  assert.strictEqual(login("demo@example.test", "a1" + "x".repeat(71)).reason, "password-too-long");
+});

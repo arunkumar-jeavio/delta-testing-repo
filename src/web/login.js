@@ -10,11 +10,13 @@
 
   // ---- reason codes to text (kept apart from showError on purpose) ----
 
-  function describe(reason, email) {
+  function describe(reason, email, attemptsLeft) {
     if (reason === "invalid-email") return "Enter a valid email address.";
     if (reason === "password-too-short") return "Password is too short.";
     if (reason === "password-needs-digit") return "Password needs at least one digit.";
+    if (reason === "password-too-long") return "Password is too long.";
     if (reason === "account-locked") return "Too many attempts. Try again later.";
+    if (typeof attemptsLeft === "number") return "Wrong credentials for " + email + ". " + attemptsLeft + " attempt(s) left before lockout.";
     return "Wrong credentials for " + email;
   }
 
@@ -29,7 +31,7 @@
     })
       .then(function (r) { return r.json(); })
       .then(function (body) {
-        if (body.ok) { window.location.href = "/welcome"; } else { showError(describe(body.reason, email)); }
+        if (body.ok) { window.location.href = "/welcome"; } else { showError(describe(body.reason, email, body.attemptsLeft)); }
       });
   });
 })();

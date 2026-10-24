@@ -26,6 +26,7 @@ function serveStatic(res, file) {
 
 function handle(req, res) {
   if (req.method === "GET" && req.url === "/") return serveStatic(res, "login.html");
+  if (req.method === "GET" && req.url === "/welcome") return serveStatic(res, "welcome.html");
   if (req.method === "GET" && (req.url === "/login.js" || req.url === "/login.css")) return serveStatic(res, req.url.slice(1));
   if (req.method === "POST" && req.url === "/api/login") {
     return readBody(req, function (b) {

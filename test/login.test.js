@@ -28,3 +28,8 @@ test("a failed sign-in reports how many attempts remain", () => {
 test("a password longer than 72 characters is rejected", () => {
   assert.strictEqual(login("demo@example.test", "a1" + "x".repeat(71)).reason, "password-too-long");
 });
+
+test("a locked account reports zero attempts left", () => {
+  for (let i = 0; i < 6; i++) login("locked@example.test", "Passw0rd-wrong3");
+  assert.strictEqual(login("locked@example.test", "Passw0rd-wrong3").attemptsLeft, 0);
+});

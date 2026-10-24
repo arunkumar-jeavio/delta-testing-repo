@@ -18,3 +18,9 @@ test("a malformed email is rejected", () => {
 test("a short password is rejected", () => {
   assert.strictEqual(login("demo@example.test", "short").reason, "password-too-short");
 });
+
+test("a failed sign-in reports how many attempts remain", () => {
+  const r = login("demo@example.test", "Passw0rd-wrong2");
+  assert.strictEqual(r.reason, "invalid-credentials");
+  assert.strictEqual(typeof r.attemptsLeft, "number");
+});

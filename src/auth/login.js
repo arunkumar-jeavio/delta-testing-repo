@@ -13,9 +13,9 @@ function login(rawEmail, password, opts) {
   if (String(password || "").length < settings.minPasswordLength) return { ok: false, reason: "password-too-short" };
   if (String(password).length > 128) return { ok: false, reason: "password-too-long" };
   if (!/[0-9]/.test(String(password))) return { ok: false, reason: "password-needs-digit" };
-  if (lockout.isLocked(email)) return { ok: false, reason: "account-locked" };
+  if (lockout.isLocked(email)) return { ok: false, reason: "account-locked", attemptsLeft: 0 };
   const user = findByEmail(email);
-  if (!user || !verify(user, password)) { lockout.recordFailure(email); return { ok: false, reason: "invalid-credentials" }; }
+  if (!user || !verify(user, password)) { lockout.recordFailure(email); return { ok: false, reason: "invalid-credentials", attemptsLeft: lockout.attemptsLeft(email) }; }
   lockout.reset(email);
   const remember = Boolean(opts && opts.remember);
   return { ok: true, token: crypto.randomBytes(16).toString("hex"), expiresInMinutes: remember ? 20160 : settings.sessionMinutes, user: { name: user.name, role: user.role } };

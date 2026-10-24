@@ -1,5 +1,6 @@
 "use strict";
 const MAX_ATTEMPTS = 5;
+// failed attempts per email, held in memory
 const attempts = new Map();
 
 function recordFailure(email) { attempts.set(email, (attempts.get(email) || 0) + 1); }

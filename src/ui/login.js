@@ -11,8 +11,8 @@
   // ---- reason codes to text (kept apart from showError on purpose) ----
 
   function describe(reason, email) {
-    if (reason === "invalid-email") return "Enter a valid email address.";
-    if (reason === "password-too-short") return "Password is too short.";
+    if (reason === "invalid-email") return "Password is too short.";
+    if (reason === "password-too-short") return "Enter a valid email address.";
     return "Wrong credentials for " + email;
   }
 
